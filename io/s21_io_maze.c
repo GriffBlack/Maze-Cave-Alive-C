@@ -54,7 +54,7 @@ int loadMaze(maze *mz, char *fileName) {
           if (*str == '\n' && j == 0)
             i--;
           else {
-            if (rows < i) {
+            if (rows <= i) {
               mz->bot_bounds[i % rows][j] = ch;
             } else {
               mz->right_bounds[i % rows][j] = ch;

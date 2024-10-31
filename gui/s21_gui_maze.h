@@ -13,8 +13,8 @@
 
 #define MENU_HEIGHT 10
 
-// #define WALL_H '_'
-// #define WALL_V '|'
+#define WALL_H '_'
+#define WALL_V '|'
 
 #define COLOR_BG COLOR_BLACK
 #define COLOR_WALL COLOR_GREEN
@@ -23,4 +23,7 @@
 void set_ncurses();
 void cleanup_ncurses();
 void draw_menu();
+void draw_maze(maze *mz);
+void resize_handler(int sig);
+void clearExtraInformation();
 #endif

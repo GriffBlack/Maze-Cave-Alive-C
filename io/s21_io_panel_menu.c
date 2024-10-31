@@ -28,6 +28,7 @@ void menuItemLoadMaze(maze *mz) {
   scanw("%s", fileName);
   if (loadMaze(mz, fileName) != 1) {
     mvprintw(4, 25, "%s", fileName);
+    draw_maze(mz);
     // set_maze_size(mz, 3, 10);
   } else {
     textMsg(4, 25, 0);

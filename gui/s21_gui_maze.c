@@ -44,3 +44,58 @@ void draw_menu() {
   mvwprintw(menu_win, 8, 2, "q - quit");
   wrefresh(menu_win);
 }
+
+void clearExtraInformation() {
+  for (int i = 1; i < 7; ++i) {
+    move(i, 25);
+    wclrtoeol(stdscr);
+  }
+}
+
+void resize_handler(int sig) {
+  if (sig == SIGWINCH) {
+    endwin();
+    refresh();
+    clear();
+
+    wresize(menu_win, MENU_HEIGHT, COLS);  // Изменяем размер окна меню
+    wresize(maze_win, LINES - MENU_HEIGHT,
+            COLS);  // Изменяем размер окна лабиринта
+
+    mvwin(maze_win, MENU_HEIGHT, 0);  // Перемещаем окно лабиринта после меню
+
+    wclear(menu_win);
+    wclear(maze_win);
+    box(menu_win, 0, 0);
+    box(maze_win, 0, 0);
+  }
+}
+
+void draw_maze(maze *mz) {
+  int max_y, max_x;
+  getmaxyx(maze_win, max_y, max_x);
+  int scale_x = (int)floor(1.0 * max_x / (mz->size_y));  // ceil - to max size
+  int scale_y = (int)floor(1.0 * max_y / (mz->size_x));  // ceil - to max size
+
+  wclear(maze_win);
+  box(maze_win, 0, 0);
+
+  for (int i = 0; i < mz->size_x; i++) {
+    for (int j = 0; j < mz->size_y; j++) {
+      if (mz->bot_bounds[i][j] == 1 || (i == mz->size_x - 1)) {
+        for (int n = 1; n < scale_x; n++)
+          mvwaddch(maze_win, i * scale_y + scale_y, j * scale_x + n, WALL_H);
+        if (mz->right_bounds[i][j] == 1 || j == (mz->size_y - 1))
+          for (int n = 1; n <= scale_y; n++)
+            mvwaddch(maze_win, i * scale_y + n, j * scale_x + scale_x, WALL_V);
+        else
+          mvwaddch(maze_win, i * scale_y + scale_y, j * scale_x + scale_x,
+                   WALL_H);
+      } else if (mz->right_bounds[i][j] == 1 || j == (mz->size_y - 1)) {
+        for (int n = 1; n <= scale_y; n++)
+          mvwaddch(maze_win, i * scale_y + n, j * scale_x + scale_x, WALL_V);
+      }
+    }
+  }
+  wrefresh(maze_win);
+}

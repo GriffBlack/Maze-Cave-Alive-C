@@ -11,8 +11,8 @@ int main() {
   int ch = 0;
   set_ncurses();
   maze *mz = init_maze();
+  signal(SIGWINCH, resize_handler);
 
-  // signal(SIGWINCH, resize_handler);
   //   initscr();  // Initialize ncurses
   //   keypad(stdscr, TRUE);  // Enable keypad for arrow keys
   //   start_color();
@@ -32,6 +32,7 @@ int main() {
       case 'q':
         break;
     }
+    // clearExtraInformation();
   }
   free_maze(mz);
   cleanup_ncurses();
