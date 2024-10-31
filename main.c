@@ -23,7 +23,7 @@ int main() {
   while (ch != 'q' && error == 0) {
     ch = getch();
     draw_menu();
-    // draw_maze();
+    draw_maze(mz);
 
     switch (ch) {
       case '1':

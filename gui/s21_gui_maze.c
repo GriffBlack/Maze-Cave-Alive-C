@@ -21,7 +21,8 @@ void set_ncurses() {
 
   start_color();
   init_pair(1, COLOR_WHITE, COLOR_BG);
-  init_pair(2, COLOR_WHITE, COLOR_PATH);
+  init_pair(2, COLOR_WHITE, COLOR_WALL);
+  init_pair(3, COLOR_WHITE, COLOR_PATH);
 }
 
 void cleanup_ncurses() {
@@ -78,6 +79,7 @@ void draw_maze(maze *mz) {
   int scale_y = (int)floor(1.0 * max_y / (mz->size_x));  // ceil - to max size
 
   wclear(maze_win);
+  wbkgdset(maze_win, COLOR_PAIR(2));
   box(maze_win, 0, 0);
 
   for (int i = 0; i < mz->size_x; i++) {
@@ -98,4 +100,5 @@ void draw_maze(maze *mz) {
     }
   }
   wrefresh(maze_win);
+  wbkgdset(maze_win, COLOR_PAIR(1));
 }
