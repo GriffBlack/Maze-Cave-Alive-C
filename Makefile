@@ -5,10 +5,11 @@ TEST_LIBS = -lcheck -lm -lpthread -lrt -lsubunit
 # BL_FOLDER = business_logic/
 MEMORY_FOLDER = memory/
 IO_FOLDER = io/
+LOGIC_FOLDER = logic/
 SRC = $(MEMORY_FOLDER)s21_memory_maze.c \
 		$(IO_FOLDER)s21_io_panel_menu.c \
 		 $(IO_FOLDER)s21_io_maze.c \
-		#  $(BL_FOLDER)maze_memory.c \
+		 $(LOGIC_FOLDER)s21_generateMaze.c \
 		#  $(BL_FOLDER)maze_eller.c \
 		#  $(BL_FOLDER)maze_solution.c \
 		#  $(BL_FOLDER)s21_maze_cell.c \

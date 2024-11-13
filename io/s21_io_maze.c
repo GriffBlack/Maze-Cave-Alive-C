@@ -33,8 +33,8 @@ int loadMaze(maze *mz, char *fileName) {
     while ((fgets(buf, 101, f)) != NULL && error != 1) {
       // while ((ch = getc(f)) != EOF) {
       // while (fgetc(f) != EOF) {
-      mvprintw(i, 60, "%s", buf);
-      mvprintw(1, 25, "start");
+      // mvprintw(i, 60, "%s", buf);
+      // mvprintw(1, 25, "start");
       int j = 0;
 
       char *str = buf;
@@ -47,10 +47,10 @@ int loadMaze(maze *mz, char *fileName) {
 
         //   mvprintw(i, 35, "%s", buf);
         if (*str == '\n' && (j) < cols && j > 0) {
-          mvprintw(i, 55, "error");
+          // mvprintw(i, 55, "error");
           error = 1;
         } else {
-          mvprintw(i, 35 + j, "%d", ch);
+          // mvprintw(i, 35 + j, "%d", ch);
           if (*str == '\n' && j == 0)
             i--;
           else {

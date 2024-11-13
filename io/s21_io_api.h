@@ -4,7 +4,9 @@
 #include "gui/s21_gui_maze.h"
 #include "s21_maze_api.h"
 
-void menuItemLoadMaze(maze *mz);
+void menuLoadMaze(maze *mz);
+void menuGenerateMaze(maze *mz);
 int loadMaze(maze *mz, char *fileName);
-
+void textMsg(int numberRow, int numberPosition, int numberItem);
+int validatorInput(int value);
 #endif

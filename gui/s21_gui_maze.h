@@ -9,8 +9,8 @@
 
 #define MENU_HEIGHT 10
 
-#define WALL_H ' '
-#define WALL_V ' '
+#define WALL_H '_'
+#define WALL_V '|'
 
 #define COLOR_BG COLOR_BLACK
 #define COLOR_WALL COLOR_GREEN

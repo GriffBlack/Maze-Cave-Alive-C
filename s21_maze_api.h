@@ -34,8 +34,9 @@ int set_maze_size(maze *mz, int x, int y);
 // int fill_maze(maze *mz, int **bots, int **rights);
 void free_maze(maze *mz);
 // void clear_maze(maze *mz);
-
 int load_maze(maze *mz, const char *path);
 void save_maze(maze mz, const char *path);
+void generateEller(maze *m);
+void printline(int lin, int *line, int *group, maze *mz);
 
 #endif

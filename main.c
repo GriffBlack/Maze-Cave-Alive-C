@@ -23,11 +23,28 @@ int main() {
   while (ch != 'q' && error == 0) {
     ch = getch();
     draw_menu();
-    draw_maze(mz);
-
+    clearExtraInformation();
+    if (mz->bot_bounds != NULL) draw_maze(mz);
+    // добавить проверку на пещеру
+    // добавить очиску лобиринта
     switch (ch) {
       case '1':
-        menuItemLoadMaze(mz);
+        menuLoadMaze(mz);
+        break;
+      case '2':
+        menuGenerateMaze(mz);
+        break;
+      case '3':
+        menuLoadMaze(mz);
+        break;
+      case '4':
+        menuLoadMaze(mz);
+        break;
+      case '5':
+        menuLoadMaze(mz);
+        break;
+      case '6':
+        menuLoadMaze(mz);
         break;
       case 'q':
         break;

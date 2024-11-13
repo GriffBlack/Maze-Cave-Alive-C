@@ -2,7 +2,6 @@
 
 WINDOW *menu_win;
 WINDOW *maze_win;
-// WINDOW *cave_win;
 
 #define min(x, y) ((x) < (y) ? (x) : (y))
 #define max(x, y) ((x) > (y) ? (x) : (y))
@@ -51,6 +50,7 @@ void clearExtraInformation() {
     move(i, 25);
     wclrtoeol(stdscr);
   }
+  wrefresh(menu_win);
 }
 
 void resize_handler(int sig) {
@@ -77,9 +77,10 @@ void draw_maze(maze *mz) {
   getmaxyx(maze_win, max_y, max_x);
   int scale_x = (int)floor(1.0 * max_x / (mz->size_y));  // ceil - to max size
   int scale_y = (int)floor(1.0 * max_y / (mz->size_x));  // ceil - to max size
-
+  if (max_x < 50 && max_x < mz->size_x) scale_x = 1;
+  if (max_y < 50 && max_y < mz->size_x) scale_y = 1;
   wclear(maze_win);
-  wbkgdset(maze_win, COLOR_PAIR(2));
+  // wbkgdset(maze_win, COLOR_PAIR(2));
   box(maze_win, 0, 0);
 
   for (int i = 0; i < mz->size_x; i++) {
